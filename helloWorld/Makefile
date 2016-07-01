@@ -12,7 +12,8 @@ helloWorld.bin: helloWorld
 
 ENTRY_FUNCTION ?= hello_world
 helloWorld: helloWorld.o
-	 $(LD) -e $(ENTRY_FUNCTION) -Ttext 0x0000000 $@.o -o $@
+	#$(LD) -e $(ENTRY_FUNCTION) -Ttext 0x0000000 $@.o -o $@
+	$(LD) -T $@.lds $@.o -o $@
 
 # %表示萬用字元, 這行意義為xxx.o是由xxx.c而來的
 # $^表示產生目標的來源, 這是裡是xxx.c
