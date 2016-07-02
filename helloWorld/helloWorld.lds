@@ -1,4 +1,4 @@
-ENTRY(hello_world)
+ENTRY(_start)
 SECTIONS
 {
     . = 0x00000000;

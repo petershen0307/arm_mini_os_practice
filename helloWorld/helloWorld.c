@@ -1,11 +1,8 @@
-#define UFCON0 ((volatile unsigned int *)(0x50000020))
-
-void hello_world()
+int hello_world(unsigned int *addr, char const *p)
 {
-    const char *p = "hello world\n";
     while(*p)
     {
-        *UFCON0 = *(p++);
+        *addr = *(p++);
     }
-    while(1);
+    return 0;
 }

@@ -2,6 +2,11 @@
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-ld
 OBJCOPY = arm-none-eabi-objcopy
+CFLAGS = -O2 -g
+ASFLAGS = -O2 -g
+LDFLAGS =
+
+OBJ = start.o helloWorld.o
 
 EXEC = helloWorld.bin
 
@@ -10,16 +15,17 @@ all = $(EXEC)
 helloWorld.bin: helloWorld
 	$(OBJCOPY) -O binary $^ $@
 
-ENTRY_FUNCTION ?= hello_world
-helloWorld: helloWorld.o
-	#$(LD) -e $(ENTRY_FUNCTION) -Ttext 0x0000000 $@.o -o $@
-	$(LD) -T $@.lds $@.o -o $@
+helloWorld: $(OBJ)
+	$(LD) -T $@.lds $(OBJ) -o $@
 
 # %表示萬用字元, 這行意義為xxx.o是由xxx.c而來的
 # $^表示產生目標的來源, 這是裡是xxx.c
 # $@表示要產生的目標, 這裡是xxx.o
 %.o: %.c
-	$(CC) -O2 -c $^ -o $@
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+%.o: %.s
+	$(CC) $(ASFLAGS) -c $^ -o $@
 
 clean:
-	rm -f $(EXEC) helloWorld.o helloWorld
+	rm -f $(EXEC) $(OBJ) helloWorld
