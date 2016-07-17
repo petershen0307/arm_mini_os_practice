@@ -12,7 +12,7 @@
 .extern __vector_fiq
 
 _start:
-ldr pc, _vector_reset ;first execute, error handles are below
+ldr pc, _vector_reset @first execute, error handles are below
 ldr pc, _vector_undefined
 ldr pc, _vector_swi
 ldr pc, _vector_prefetch_abort

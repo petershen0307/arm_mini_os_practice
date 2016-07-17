@@ -1,5 +1,5 @@
 typedef void (*init_func) (void);
-#define UFCON0 ((volatile unsigned int *))(0x50000020)
+#define UFCON0 ((volatile unsigned int *)(0x50000020))
 
 void hello_world(void)
 {
@@ -12,7 +12,7 @@ void hello_world(void)
 
 static init_func init[] = {
     hello_world,
-    NULL
+    0
 };
 
 void boot_start()
