@@ -26,22 +26,22 @@
 
 __vector_reset:
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | SVC_MOD)
-    LDR SP, =_SVC_STACK
+    ldr sp, =_SVC_STACK
 
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | IRQ_MOD)
-    LDR SP, =_IRQ_STACK
+    ldr sp, =_IRQ_STACK
 
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | FIQ_MOD)
-    LDR SP, =_FIQ_STACK
+    ldr sp, =_FIQ_STACK
 
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | ABT_MOD)
-    LDR SP, =_ABT_STACK
+    ldr sp, =_ABT_STACK
 
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | UND_MOD)
-    LDR SP, =_UND_STACK
+    ldr sp, =_UND_STACK
 
     msr cpsr_c, #(DISABLE_IRQ | DISABLE_FIQ | SYS_MOD)
-    LDR SP, =_SYS_STACK
+    ldr sp, =_SYS_STACK
 
 _clear_bss:
     ldr r1, _bss_start_
