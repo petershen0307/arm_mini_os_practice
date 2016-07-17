@@ -1,13 +1,24 @@
 typedef void (*init_func) (void);
+#define UFCON0 ((volatile unsigned int *))(0x50000020)
+
+void hello_world(void)
+{
+    char const *p = "hello world\n";
+    while (*p)
+    {
+        *UFCON0 = *(p++);
+    }
+}
 
 static init_func init[] = {
-    arm920t_init_mmu,
-    s3c2410_init_clock,
-    s3c2410_init_memory,
-    s3c2410_init_irq,
-    s3c2410_init_io,
+    hello_world,
     NULL
 };
+
+void boot_start()
+{
+    while (1);
+}
 
 void load_init_boot(init_func *init)
 {
